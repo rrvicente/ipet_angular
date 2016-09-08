@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Portal IPet</title>
+        <meta charset="utf-8">
+        <style>
+			.mbottom {
+				margin-bottom: 10px;
+			}
+		</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Cadastro de Cliente</a>
+            </div>
+          </div>
+        </nav>
+        
+        <div ng-controller="crudClienteController">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well well-sm">
+                            <button type="button" class="btn btn-primary" ng-click="abreCadastroCliente()">Novo cliente</button>
+                            <button type="button" class="btn btn-danger" ng-click="cancelaCadastro()" ng-show="showCadastro">Cancelar</button>
+                            <a type="button" class="btn btn-danger" href="#">Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container" ng-show="showCadastro">
+                <form ng-submit="cadastrarNovoCliente()">
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">
+                            Nome:
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" ng-model="cliente.nome" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">
+                            CPF:
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" ng-model="cliente.cpf" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">
+                            Telefone:
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" ng-model="cliente.telefone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">
+                            Endereço:
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" ng-model="cliente.endereco" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">Observações:</div>
+                        <div class="col-xs-9">
+                            <textarea class="form-control" ng-model="cliente.observacao" rows="5"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-9 col-xs-offset-3">
+                            <button class="btn btn-danger" type="submit">Inserir</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

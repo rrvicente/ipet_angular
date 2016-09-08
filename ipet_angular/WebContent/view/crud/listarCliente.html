@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Portal IPet</title>
+        <meta charset="utf-8">
+        <style>
+			.mbottom {
+				margin-bottom: 10px;
+			}
+		</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+            	<a type="button" class="navbar-brand" href="#">Home  ></a>
+              	<a class="navbar-brand">Clientes</a>
+            </div>
+          </div>
+        </nav>
+        
+        <div ng-controller="crudClienteController">
+        	<div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well well-sm">
+                            <a type="button" class="btn btn-danger" href="#">Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                    
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="90">Data Cadastro</th>
+                                    <th>Nome Cliente</th>
+                                    <th>CPF</th>
+                                    <th>Telefone</th>
+                                    <th>Endereço</th>
+                                    <th>Pets</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                
+                                <tr ng-repeat="cliente in allClientes">
+                                	<td>{{ cliente.data_cadastro }}</td>
+                                    <td>{{ cliente.nome }}</td>
+                                    <td>{{ cliente.cpf }}</td>
+                                    <td>{{ cliente.telefone }}</td>
+                                    <td>{{ cliente.endereco }}</td>
+                                    <td><a type="button" class="btn btn-primary" ng-click="abreCadastroPetsCliente(cliente.id)">Pets</a></td>
+                                </tr>
+                                
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

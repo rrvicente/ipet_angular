@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Portal IPet</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/angular-bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+
+    <div class="jumbotron">
+        <div class="container">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="credits text-center">
+        <p>
+            <a href="http://www.furb.br" target="_top">www.furb.br</a>
+        </p>
+    </div>
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+
+    <script src="js/app.module.js"></script>
+    <script src="js/services/AuthenticationService.js"></script>
+    <script src="js/services/FlashService.js"></script>
+
+    <!-- Real user service that uses an api -->
+    <!-- <script src="//cdn.rawgit.com/cornflourblue/angular-registration-login-example/master/app-services/user.service.js"></script> -->
+
+    <!-- serviço fake para demonstrar uso de login através do local storage -->
+    <script src="js/services/UserService.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controller/loginController.js"></script>
+    <script src="js/controller/registerController.js"></script>
+    <script src="js/controller/homeController.js"></script>
+    <script src="js/controller/crudClienteController.js"></script>
+    <script src="js/controller/crudNoticiaController.js"></script>
+    <script src="js/controller/crudAnimalController.js"></script>
+    
+</body>
+</html>
