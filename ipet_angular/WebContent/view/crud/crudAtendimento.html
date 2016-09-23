@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Portal IPet</title>
+        <meta charset="utf-8">
+        <style>
+			.mbottom {
+				margin-bottom: 10px;
+			}
+		</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a type="button" class="navbar-brand" href="#">Home  ></a>
+              <a class="navbar-brand">Cadastro de Atendimentos</a>
+            </div>
+          </div>
+        </nav>
+        
+        <div ng-controller="crudAtendimentoController">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well well-sm">
+                            <button type="button" class="btn btn-primary" ng-click="abreCadastroAtendimento()">Novo Atendimento</button>
+                            <button type="button" class="btn btn-danger" ng-click="cancelaCadastro()" ng-show="showCadastro">Cancelar</button>
+                            <a type="button" class="btn btn-danger" href="#">Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container" ng-show="showCadastro">
+                <form ng-submit="cadastrarNovoAtendimento()">
+                    
+                	<div class="row mbottom">
+					    	<div class="col-xs-3 text-right">
+	                            Cliente:
+	                        </div>
+	                        <div class="col-xs-9">
+							<select id ="red" class="form-control" ng-model="atendimento.cliente">
+								<option value="" disabled="" selected="" class="ng-binding">Selecione um cliente</option>
+								<option ng-repeat="cliente in allClientes" ng-click="listarAnimais(cliente)">{{cliente.nome +' (CPF: '+ cliente.cpf +')' }}</option>
+							</select>
+							</div>
+					</div>
+
+					<div class="row mbottom">
+					    	<div class="col-xs-3 text-right">
+	                            Pet:
+	                        </div>
+	                        <div class="col-xs-9">
+							<select id ="red" class="form-control" ng-model="atendimento.animal">
+								<option value="" disabled="" selected="" class="ng-binding">Selecione um pet</option>
+								<option ng-repeat="animal in allAnimais" ng-click="addAnimal(animal)">{{ animal.nome_pet }}</option>
+							</select>
+							</div>
+					</div>
+					
+					<div class="row mbottom">
+                        <div class="col-xs-3 text-right">Data Atendimento:</div>
+                        <div class="col-xs-9">
+                            <input class="form-control" ng-model="atendimento.data_atendimento" ui-mask="99/99/9999" model-view-value="true">
+                        </div>
+                    </div>
+                    
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">Valor:</div>
+                        <div class="col-xs-9">
+                            <input class="form-control" ng-model="atendimento.valor" model-view-value="true">
+                        </div>
+                    </div>
+
+                    <div class="row mbottom">
+                        <div class="col-xs-9 col-xs-offset-3">
+                            <button class="btn btn-danger" type="submit">Inserir</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            
+<!--             <div class="container"> -->
+<!--                 <div class="row"> -->
+<!--                     <div class="col-xs-12"> -->
+                    
+<!--                         <table class="table table-bordered table-striped table-hover"> -->
+<!--                             <thead> -->
+<!--                                 <tr> -->
+<!--                                 	<th>Código</th> -->
+<!--                                     <th>Valor</th> -->
+<!--                                     <th>Data do Atendimento</th> -->
+<!--                                 </tr> -->
+<!--                             </thead> -->
+                            
+<!--                             <tbody> -->
+                                
+<!--                                 <tr ng-repeat="atendimento in allAtendimentos"> -->
+<!--                                 	<td>{{ atendimento.id }}</td> -->
+<!--                                 	<td>{{ atendimento.valor }}</td> -->
+<!--                                 	<td>{{ atendimento.data_atendimento }}</td> -->
+<!--                                 </tr> -->
+                                
+<!--                             </tbody> -->
+                            
+<!--                         </table> -->
+                        
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+            
+            <div class="container" ng-show="showCadastroItens">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well well-sm">
+                        	<td>Produtos e Serviços</td>
+                        	<div class="row">
+			                    <div class="col-xs-12">
+			                    
+			                        <table class="table table-bordered table-striped table-hover">
+			                            <thead>
+			                                <tr>
+			                                	<th>Código</th>
+			                                    <th>Quantidade</th>
+			                                    <th>Valor</th>
+			                                </tr>
+			                            </thead>
+			                            
+			                            <tbody>
+			                                
+			                                <tr ng-repeat="item in allItensAtendimento">
+			                                	<td>{{ item.id }}</td>
+			                                	<td>{{ item.quantidade }}</td>
+			                                	<td>{{ item.valor }}</td>
+			                                </tr>
+			                                
+			                            </tbody>
+			                            
+			                        </table>
+			                        
+			                    </div>
+			                </div>
+                        	
+                        	<form ng-submit="addAtendimentoItem()">
+	                        	<div class="row mbottom">
+							    	<div class="col-xs-2 text-right">
+			                            Produto/Serviço:
+			                        </div>
+			                        <div class="col-xs-2">
+										<select id ="red" class="form-control" ng-model="produto">
+											<option value="" disabled="" selected="" class="ng-binding">Selecione um produto/serviço</option>
+											<option ng-repeat="produto in allProdutos" ng-click="addProduto(produto)">{{produto.descricao}}</option>
+										</select>
+									</div>
+									<div >
+				                        <div class="col-xs-1 text-right">Valor:</div>
+				                        <div class="col-xs-1">
+				                            <input class="form-control" ng-model="atendimentoItem.valor" model-view-value="true">
+				                        </div>
+				                    </div>
+				                    <div class="row mbottom">
+				                        <div class="col-xs-1 text-right">Quantidade:</div>
+				                        <div class="col-xs-1">
+				                            <input class="form-control" ng-model="atendimentoItem.quantidade" model-view-value="true">
+				                        </div>
+				                        <button class="btn btn-danger" type="submit">Inserir</button>
+				                    </div>
+								</div>
+                        	</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

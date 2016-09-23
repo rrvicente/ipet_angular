@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Portal IPet</title>
+        <meta charset="utf-8">
+        <style>
+			.mbottom {
+				margin-bottom: 10px;
+			}
+		</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+            	<a type="button" class="navbar-brand" href="#">Home  ></a>
+                <a type="button" class="navbar-brand" href="#/cliente">Cadastro de Clientes  ></a>
+                <a class="navbar-brand" href="#/animal">Cadastro de Pets  ></a>
+              	<a class="navbar-brand" href="#/listar.atendimento">Atendimentos  ></a>
+              	<a class="navbar-brand">Detalhes do Atendimento</a>
+            </div>
+          </div>
+        </nav>
+        
+        <div ng-controller="listarAtendimentoItensController">
+        	<div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well well-sm">
+                            <a type="button" class="btn btn-danger" href="#">Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well well-sm">
+                        	<td>Produtos e Serviços</td>
+                        	<div class="row">
+			                    <div class="col-xs-12">
+			                    
+			                        <table class="table table-bordered table-striped table-hover">
+			                            <thead>
+			                                <tr>
+			                                	<th>Código</th>
+			                                	<th>Descrição</th>
+			                                    <th>Quantidade</th>
+			                                    <th>Valor</th>
+			                                </tr>
+			                            </thead>
+			                            
+			                            <tbody>
+			                                
+			                                <tr ng-repeat="atendimentoItem in allItensAtendimento">
+			                                	<td>{{ atendimentoItem.id }}</td>
+			                                	<td>{{ atendimentoItem.descricao }}</td>
+			                                	<td>{{ atendimentoItem.quantidade }}</td>
+			                                	<td>{{ atendimentoItem.valor }}</td>
+			                                </tr>
+			                                
+			                            </tbody>
+			                            
+			                        </table>
+			                        
+			                    </div>
+			                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

@@ -14,12 +14,14 @@
           <div class="container-fluid">
             <div class="navbar-header">
             	<a type="button" class="navbar-brand" href="#">Home  ></a>
-              	<a class="navbar-brand">Clientes</a>
+                <a type="button" class="navbar-brand" href="#/cliente">Cadastro de Clientes  ></a>
+                <a class="navbar-brand" href="#/animal">Cadastro de Pets  ></a>
+              	<a class="navbar-brand">Atendimentos</a>
             </div>
           </div>
         </nav>
         
-        <div ng-controller="crudClienteController">
+        <div ng-controller="crudAtendimentoController">
         	<div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -29,36 +31,33 @@
                     </div>
                 </div>
             </div>
-           <div class="container">
+           <div class="container"> 
                 <div class="row">
                     <div class="col-xs-12">
                     
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th width="90">Data Cadastro</th>
-                                    <th>Nome Cliente</th>
-                                    <th>CPF</th>
-                                    <th>Telefone</th>
-                                    <th>Endereço</th>
-                                    <th>Pets</th>
+                                	<th>Código</th>
+                                    <th>Valor</th>
+                                    <th>Data do Atendimento</th>
+                                    <th>Detalhes</th>
                                 </tr>
                             </thead>
                             
                             <tbody>
                                 
-                                <tr ng-repeat="cliente in allClientes">
-                                	<td>{{ cliente.data_cadastro }}</td>
-                                    <td>{{ cliente.nome }}</td>
-                                    <td>{{ cliente.cpf }}</td>
-                                    <td>{{ cliente.telefone }}</td>
-                                    <td>{{ cliente.endereco }}</td>
-                                    <td><a type="button" class="btn btn-primary" href="#/animal" ng-click="abreCadastroPetsCliente(cliente.id)">Pets</a></td>
+                                <tr ng-repeat="atendimento in allAtendimentos">
+                                	<td>{{ atendimento.id }}</td>
+                                	<td>{{ atendimento.valor }}</td>
+                                	<td>{{ atendimento.data_atendimento }}</td>
+                                	<td><a type="button" class="btn btn-primary" href="#/listar.atendimento.itens" ng-click="abreListarAtendimentoItens(atendimento)">Itens</a></td>
                                 </tr>
                                 
                             </tbody>
                             
                         </table>
+                        
                     </div>
                 </div>
             </div>

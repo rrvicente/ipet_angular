@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app').controller('crudClienteController', ['$scope', '$http',
-				function($scope, $http) {
+angular.module('app').controller('crudClienteController', ['$scope', '$http', 'MyService',
+				function($scope, $http, MyService) {
 
 					$scope.showCadastro = false;
 					$scope.cliente = montarObjCliente();
@@ -15,16 +15,15 @@ angular.module('app').controller('crudClienteController', ['$scope', '$http',
 						$http.get('/ipet_angular/rest/cliente/listar').success(
 								function(data) {
 									$scope.allClientes = data;
+									for (var i=0; i<$scope.allClientes.length; i++) {
+										$scope.allClientes[i].show = true;
+									}
 								}).error(function() {
 							alert("Falha em obter dados de clientes");
 						});
 					};
 
 					$scope.cadastrarNovoCliente = function() {
-
-						// $scope.cliente.animal =
-						// encontrarAnimal($scope.animal,
-						// $scope.allAnimais);
 
 						$http.post('/ipet_angular/rest/cliente/new',
 								$scope.cliente).success(function(data) {
@@ -45,8 +44,26 @@ angular.module('app').controller('crudClienteController', ['$scope', '$http',
 					};
 
 					$scope.abreCadastroPetsCliente = function(cliente) {
-						alert(cliente);
+						MyService.data.cliente = cliente;
 					};
+					
+					$scope.filter_by = function(filter) {
+						var value = "";
+						
+						for (var i=0; i<$scope.allClientes.length; i++) {
+							if("nome" === filter){
+								value = $scope.allClientes[i].nome.toLowerCase();
+							}else{
+								value = $scope.allClientes[i].cpf.toLowerCase();
+							}
+								
+							if (value.indexOf($scope.f.value.toLowerCase()) !== -1) {
+								$scope.allClientes[i].show = true;
+							}else{
+								$scope.allClientes[i].show = false;
+							}
+				        }
+					}
 					
 					function montarObjCliente() {
 						return {
@@ -56,16 +73,10 @@ angular.module('app').controller('crudClienteController', ['$scope', '$http',
 							cpf : "",
 							telefone : "",
 							endereco : "",
-							observacao : ""
+							email : "",
+							observacao : "",
+							show : true
 						};
 					}
 
-					function encontrarAnimal(nomeAnimal, allAnimais) {
-						for (var int = 0; int < allAnimais.length; int++) {
-							if (nomeAnimal == allAnimais[int].raca) {
-								return allAnimais[int];
-							}
-						}
-					}
-					// }
 				} ]);

@@ -13,7 +13,8 @@
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">Cadastro de Cliente</a>
+            <a type="button" class="navbar-brand" href="#">Home  ></a>
+              <a class="navbar-brand" >Cadastro de Clientes</a>
             </div>
           </div>
         </nav>
@@ -70,6 +71,15 @@
                         </div>
                     </div>
                     
+                     <div class="row mbottom">
+                        <div class="col-xs-3 text-right">
+                            Email:
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" ng-model="cliente.email" required>
+                        </div>
+                    </div>
+                    
                     <div class="row mbottom">
                         <div class="col-xs-3 text-right">Observações:</div>
                         <div class="col-xs-9">
@@ -84,6 +94,41 @@
                     </div>
                     
                 </form>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                    
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="90">Data Cadastro</th>
+                                    <th>Nome Cliente <input ng-model="f.value" ng-change="filter_by('nome')"></th>
+                                    <th>CPF <input ng-model="f.value" ng-change="filter_by('cpf')"></th>
+                                    <th>Telefone</th>
+                                    <th>Endereço</th>
+                                    <th>Email</th>
+                                    <th>Pets</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                
+                                <tr ng-repeat="cliente in allClientes">
+                                	<td ng-show="cliente.show">{{ cliente.data_cadastro }}</td>
+                                    <td ng-show="cliente.show">{{ cliente.nome }}</td>
+                                    <td ng-show="cliente.show">{{ cliente.cpf }}</td>
+                                    <td ng-show="cliente.show">{{ cliente.telefone }}</td>
+                                    <td ng-show="cliente.show">{{ cliente.endereco }}</td>
+                                    <td ng-show="cliente.show">{{ cliente.email }}</td>
+                                    <td ng-show="cliente.show"><a type="button" class="btn btn-primary" href="#/animal" ng-click="abreCadastroPetsCliente(cliente)">Pets</a></td>
+                                </tr>
+                                
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

@@ -14,17 +14,17 @@
           <div class="container-fluid">
             <div class="navbar-header">
               <a type="button" class="navbar-brand" href="#">Home  ></a>
-              <a class="navbar-brand">Cadastro de Notícias</a>
+              <a class="navbar-brand" >Cadastro de Produtos</a>
             </div>
           </div>
         </nav>
         
-        <div ng-controller="crudNoticiaController">
+        <div ng-controller="crudProdutoController">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="well well-sm">
-                            <button type="button" class="btn btn-primary" ng-click="abreCadastroNoticia()">Nova Notícia</button>
+                            <button type="button" class="btn btn-primary" ng-click="abreCadastroProduto()">Novo Produto</button>
                             <button type="button" class="btn btn-danger" ng-click="cancelaCadastro()" ng-show="showCadastro">Cancelar</button>
                             <a type="button" class="btn btn-danger" href="#">Home</a>
                         </div>
@@ -33,50 +33,43 @@
             </div>
             
             <div class="container" ng-show="showCadastro">
-                <form ng-submit="cadastrarNovaNoticia()">
+                <form ng-submit="cadastrarNovoProduto()">
                     
                     <div class="row mbottom">
                         <div class="col-xs-3 text-right">
-                            Título:
+                            Descricao:
                         </div>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" ng-model="noticia.titulo" required>
+                            <input type="text" class="form-control" ng-model="produto.descricao" required>
+                        </div>
+                    </div>
+
+                    <div class="row mbottom">
+                        <div class="col-xs-3 text-right">Valor:</div>
+                        <div class="col-xs-9">
+                            <input class="form-control" ng-model="produto.valor" model-view-value="true">
                         </div>
                     </div>
                     
                     <div class="row mbottom">
-                        <div class="col-xs-3 text-right">Descrição:</div>
+                        <div class="col-xs-3 text-right">Estoque:</div>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" ng-model="noticia.descricao" >
+                            <input type="text" class="form-control" ng-model="produto.estoque" required>
                         </div>
                     </div>
-                    
+
                     <div class="row mbottom">
-                        <div class="col-xs-3 text-right">Data:</div>
-                        <div class="col-xs-9">
-                            <input class="form-control" ng-model="noticia.data" ui-mask="99/99/9999" model-view-value="true">
+				    	<div class="col-xs-3 text-right">
+                            Tipo:
                         </div>
-                    </div>
-                    
-                    <div class="row mbottom">
-					    	<div class="col-xs-3 text-right">
-	                            Pet:
-	                        </div>
-	                        <div class="col-xs-9">
-							<select id ="red" class="form-control" ng-model="noticia.animal">
-								<option value="-1" class="ng-binding">Enviar para todos</option>
-								<option ng-repeat="animal in allAnimais" ng-click="addAnimal(animal)">{{ animal.nome_pet }}</option>
-							</select>
-							</div>
-					</div>
-					
-                    <div class="row mbottom">
-                        <div class="col-xs-3 text-right">Texto:</div>
                         <div class="col-xs-9">
-                            <textarea class="form-control" ng-model="noticia.texto" rows="5"></textarea>
-                        </div>
-                    </div>
-                    
+						<select id ="red" class="form-control" ng-model="produto.tipo">
+							<option value="1" class="ng-binding">Produto</option>
+							<option value="2" class="ng-binding">Serviço</option>
+						</select>
+						</div>
+				    </div>
+				    
                     <div class="row mbottom">
                         <div class="col-xs-9 col-xs-offset-3">
                             <button class="btn btn-danger" type="submit">Inserir</button>
@@ -93,18 +86,22 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th width="90">Data</th>
-                                    <th>Titulo</th>
-                                    <th>Descrição</th>
+                                	<th>Código</th>
+                                	<th>Descrição  <input ng-model="f.value" ng-change="filter_by()"></th>
+                                    <th>Valor</th>
+                                    <th>Estoque</th>
+                                    <th>Tipo</th>
                                 </tr>
                             </thead>
                             
                             <tbody>
                                 
-                                <tr ng-repeat="noticia in allNoticias">
-                                    <td>{{ noticia.data }}</td>
-                                    <td>{{ noticia.titulo }}</td>
-                                    <td>{{ noticia.descricao }}</td>
+                                <tr ng-repeat="produto in allProdutos">
+                                	<td ng-show="produto.show">{{ produto.id }}</td>
+                                	<td ng-show="produto.show">{{ produto.descricao }}</td>
+                                	<td ng-show="produto.show">{{ produto.valor }}</td>
+                                	<td ng-show="produto.show">{{ produto.estoque }}</td>
+                                	<td ng-show="produto.show">{{ produto.tipo }}</td>
                                 </tr>
                                 
                             </tbody>

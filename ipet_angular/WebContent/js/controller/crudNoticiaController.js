@@ -48,13 +48,41 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
 		$scope.listarNoticias();
 	};
 
+	$scope.allAnimais = {};
+	$scope.listarAnimais = function(cliente) {
+		$http.get('/ipet_angular/rest/animal/listar').success(function(data) {
+			$scope.allAnimais = data;
+		}).error(function() {
+			alert("Falha em obter dados de Pets");
+		});
+	};
+	$scope.listarAnimais();
+	
+	$scope.addAnimal = function(animal) {
+		$scope.noticia.id_animal = animal.id;
+	};
+	
 	function montarObjNoticia() {
 		return {
 			id : -1,
+			id_animal : -1,
 			titulo : "",
 			descricao : "",
 			texto : "",
-			data : ""
+			data : "",
+			animal : montarObjAnimal()
 		};
 	}
+	
+	function montarObjAnimal() {
+		return {
+			id : -1,
+			id_cliente : -1,
+			especie : "",
+			raca : "",
+			nome_pet : "",
+			data_nascimento_pet : ""
+		};
+	}
+	
 }]);

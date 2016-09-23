@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app').controller('crudAnimalController', ['$scope', '$http',
-				function($scope, $http, $stateParams) {
+angular.module('app').controller('crudAnimalController', ['$scope', '$http', 'MyService',
+				function($scope, $http, MyService) {
 
 	$scope.showCadastro = false;
 	$scope.animal = montarObjAnimal();
@@ -12,7 +12,9 @@ angular.module('app').controller('crudAnimalController', ['$scope', '$http',
 	}
 
 	$scope.listarAnimais = function() {
-		$http.get('/ipet_angular/rest/animal/listar').success(function(data) {
+		var id_cliente = '?id=' + MyService.data.cliente.id;
+		
+		$http.get('/ipet_angular/rest/animal/listar'+ id_cliente).success(function(data) {
 			$scope.allAnimais = data;
 		}).error(function() {
 			alert("Falha em obter dados de Pets");
@@ -40,16 +42,20 @@ angular.module('app').controller('crudAnimalController', ['$scope', '$http',
 	};
 	$scope.listarAnimais();
 
+	$scope.abreListarAtendimento = function(animal) {
+		MyService.data.animal = animal;
+	};
+	
 	$scope.cancelaCadastro = function() {
 		$scope.showCadastro = false;
-		$scope.animal = montarObjAnimal();
-		$scope.listarAnimais();
+		$scope.cliente = montarObjCliente();
+		$scope.listarClientes();
 	};
 	
 	function montarObjAnimal() {
 		return {
 			id : -1,
-			id_cliente : -1,
+			id_cliente : MyService.data.cliente.id,
 			especie : "",
 			raca : "",
 			nome_pet : "",

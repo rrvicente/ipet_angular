@@ -40,6 +40,11 @@
                 loadAllUsers();
             });
         }
+        
+        function sair(){
+        	$rootScope.showLoginTemplate = true;
+            $rootScope.showMenuTemplate = false;
+        }
     }
 
 })();

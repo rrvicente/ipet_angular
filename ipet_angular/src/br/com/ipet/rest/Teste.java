@@ -52,7 +52,7 @@ public class Teste {
 	public Pessoa aloMundoJSON() {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setId(1);
-		pessoa.setNome("Diogo");
+		pessoa.setNome("Rafael");
 		return pessoa;
 	}
 

@@ -15,6 +15,7 @@ public class Cliente {
 	private String endereco;
 	private String observacao;
 	private String data_cadastro;
+	private String email;
 	private List<Animal> pets = new ArrayList<Animal>();
 
 	public int getId() {
@@ -71,6 +72,14 @@ public class Cliente {
 
 	public void setData_cadastro(String data_cadastro) {
 		this.data_cadastro = data_cadastro;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public List<Animal> getPets() {
