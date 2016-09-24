@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Noticia {
 
 	private int id;
+	private int id_animal;
+	private int status;
 	private String titulo;
 	private String descricao;
 	private String data;
@@ -17,6 +19,22 @@ public class Noticia {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getId_animal() {
+		return id_animal;
+	}
+
+	public void setId_animal(int id_animal) {
+		this.id_animal = id_animal;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public String getTitulo() {

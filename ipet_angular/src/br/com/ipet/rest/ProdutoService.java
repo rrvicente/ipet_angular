@@ -49,7 +49,7 @@ public class ProdutoService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/delete")
-	public void deletarProduto(Produto produto) {
+	public void deletarProduto(@QueryParam("id") String id) {
 		Connection con = DatabaseConfig.getConnection();
 
 		try {
@@ -57,7 +57,7 @@ public class ProdutoService {
 			str.append("DELETE FROM TB_PRODUTO WHERE TB_PRODUTO.ID = ?");
 
 			PreparedStatement stm = con.prepareStatement(str.toString());
-			stm.setInt(1, produto.getId());
+			stm.setString(1, id);
 
 			stm.execute();
 			con.close();
@@ -84,7 +84,7 @@ public class ProdutoService {
 					str.append(" WHERE TB_PRODUTO.ID = ").append(id);
 				} catch (Exception e) {
 				}
-				
+
 			PreparedStatement stm = con.prepareStatement(str.toString());
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {

@@ -94,17 +94,21 @@
                             <thead>
                                 <tr>
                                     <th width="90">Data</th>
-                                    <th>Titulo</th>
+                                    <th>Titulo  <input ng-model="f.value" ng-change="filter_by()"></th>
                                     <th>Descrição</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             
                             <tbody>
                                 
                                 <tr ng-repeat="noticia in allNoticias">
-                                    <td>{{ noticia.data }}</td>
-                                    <td>{{ noticia.titulo }}</td>
-                                    <td>{{ noticia.descricao }}</td>
+                                    <td ng-show="noticia.show">{{ noticia.data }}</td>
+                                    <td ng-show="noticia.show">{{ noticia.titulo }}</td>
+                                    <td ng-show="noticia.show">{{ noticia.descricao }}</td>
+                                    <td ng-show="noticia.show"><a type="button" class="btn btn-danger" ng-click="liberarNoticia(noticia)">{{ noticia.status_desc }}</a></td>
+                                    <td ng-show="noticia.show"><a type="button" class="btn btn-danger" ng-click="excluirNoticia(noticia)">Excluir</a></td>
+                                    
                                 </tr>
                                 
                             </tbody>

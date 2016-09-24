@@ -40,6 +40,15 @@ angular.module('app').controller(
 					};
 					$scope.listarProdutos();
 
+					$scope.excluirProduto = function(produto) {
+						var params = '?id=' + produto.id;
+						$http.post('/ipet_angular/rest/produto/delete'+ params).success(function(data) {
+							$scope.listarProdutos();
+						}).error(function() {
+							alert("Falha ao excluir produto!");
+						});
+					};
+					
 					$scope.cancelaCadastro = function() {
 						$scope.showCadastro = false;
 						$scope.produto = montarObjProduto();

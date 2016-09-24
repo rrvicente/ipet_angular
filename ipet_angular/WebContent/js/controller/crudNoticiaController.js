@@ -15,6 +15,11 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
         $http.get('/ipet_angular/rest/noticia/listar')
             .success(function(data){
                 $scope.allNoticias = data;
+                for (var i=0; i<$scope.allNoticias.length; i++) {
+                	$scope.allNoticias[i].status_desc = $scope.allNoticias[i].status == 1 ? "Bloqueada" : "Enviada";
+					$scope.allNoticias[i].show = true;
+					$("#btn-liberar").addClass("btn btn-primary");
+                }
             })
             .error(function(){
                 alert("Falha em obter as notícias");
@@ -42,6 +47,24 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
 	};
 	$scope.listarNoticias();
 	
+	$scope.liberarNoticia = function(noticia) {
+		var params = '?id=' + noticia.id;
+		$http.post('/ipet_angular/rest/noticia/liberar'+ params).success(function(data) {
+			$scope.listarNoticias();
+		}).error(function() {
+			alert("Falha ao enviar noticia!");
+		});
+	};
+	
+	$scope.excluirNoticia = function(noticia) {
+		var params = '?id=' + noticia.id;
+		$http.post('/ipet_angular/rest/noticia/delete'+ params).success(function(data) {
+			$scope.listarNoticias();
+		}).error(function() {
+			alert("Falha ao excluir noticia!");
+		});
+	};
+	
 	$scope.cancelaCadastro = function() {
 		$scope.showCadastro = false;
 		$scope.noticia = montarObjNoticia();
@@ -62,6 +85,18 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
 		$scope.noticia.id_animal = animal.id;
 	};
 	
+	$scope.f = {};
+
+	$scope.filter_by = function() {
+		for (var i=0; i<$scope.allNoticias.length; i++) {
+			if ($scope.allNoticias[i].titulo.toLowerCase().indexOf($scope.f.value.toLowerCase()) !== -1) {
+				$scope.allNoticias[i].show = true;
+			}else{
+				$scope.allNoticias[i].show = false;
+			}
+        }
+	}
+	
 	function montarObjNoticia() {
 		return {
 			id : -1,
@@ -70,6 +105,9 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
 			descricao : "",
 			texto : "",
 			data : "",
+			status : 1,
+			status_desc : "",
+			show : true,
 			animal : montarObjAnimal()
 		};
 	}

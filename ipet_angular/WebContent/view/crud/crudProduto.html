@@ -14,7 +14,7 @@
           <div class="container-fluid">
             <div class="navbar-header">
               <a type="button" class="navbar-brand" href="#">Home  ></a>
-              <a class="navbar-brand" >Cadastro de Produtos</a>
+              <a class="navbar-brand" >Cadastro de Produtos - Serviços</a>
             </div>
           </div>
         </nav>
@@ -91,6 +91,7 @@
                                     <th>Valor</th>
                                     <th>Estoque</th>
                                     <th>Tipo</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             
@@ -102,6 +103,7 @@
                                 	<td ng-show="produto.show">{{ produto.valor }}</td>
                                 	<td ng-show="produto.show">{{ produto.estoque }}</td>
                                 	<td ng-show="produto.show">{{ produto.tipo }}</td>
+                                	<td ng-show="produto.show"><a type="button" class="btn btn-danger" ng-click="excluirProduto(produto)">Excluir</a></td>
                                 </tr>
                                 
                             </tbody>
