@@ -2,6 +2,8 @@ package br.com.ipet.entidade;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.json.simple.JSONObject;
+
 @XmlRootElement
 public class Produto {
 
@@ -10,6 +12,11 @@ public class Produto {
 	private double valor;
 	private int estoque;
 	private int tipo;
+	public static int key;
+
+	public Produto() {
+		key = key + 1;
+	}
 
 	public int getId() {
 		return id;
@@ -51,4 +58,15 @@ public class Produto {
 		this.tipo = tipo;
 	}
 
+	@SuppressWarnings("unchecked")
+	public JSONObject toJSONObject() {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("id", getId());
+		jsonObject.put("descricao", getDescricao());
+		jsonObject.put("valor", getValor());
+		jsonObject.put("estoque", getEstoque());
+		jsonObject.put("tipo", getTipo());
+
+		return jsonObject;
+	}
 }

@@ -25,6 +25,18 @@ angular.module('app').controller(
 								}).error(function() {
 							alert("Falha em obter dados de produtos");
 						});
+						
+//						$.ajax({
+//							url : 'ProdutoServlet',
+//							data : {acao : 'listar'},
+//							success : function(responseText) {
+//								$scope.allProdutos = responseText;
+//								for (var i=0; i<$scope.allProdutos.length; i++) {
+//										$scope.allProdutos[i].show = true;
+//								}
+//							}
+//						});
+						
 					};
 
 					$scope.cadastrarNovoProduto = function() {
@@ -37,6 +49,17 @@ angular.module('app').controller(
 						}).error(function() {
 							alert("Falha ao cadastrar produto!");
 						});
+						
+//								$.ajax({
+//									url : 'ProdutoServlet',
+//									data : {acao : 'new', produto : $scope.produto},
+//									success : function(responseText) {
+//									}
+//								});
+//								$scope.produto = montarObjProduto();
+//								$scope.showCadastro = false;
+//								$scope.listarProdutos();
+						
 					};
 					$scope.listarProdutos();
 
@@ -47,6 +70,15 @@ angular.module('app').controller(
 						}).error(function() {
 							alert("Falha ao excluir produto!");
 						});
+						
+
+								// $.ajax({
+								// url : 'ProdutoServlet',
+								// data : {acao : 'delete', id : produto.id},
+								// success : function(responseText) {
+								// $scope.listarProdutos();
+								//							}
+								//						});
 					};
 					
 					$scope.cancelaCadastro = function() {
