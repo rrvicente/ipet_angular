@@ -54,7 +54,7 @@
                     <div class="row mbottom">
                         <div class="col-xs-3 text-right">Data:</div>
                         <div class="col-xs-9">
-                            <input class="form-control" ng-model="noticia.data" ui-mask="99/99/9999" model-view-value="true">
+                            <input type="date" class="form-control" ng-model="noticia.data" ui-mask="99/99/9999" model-view-value="true">
                         </div>
                     </div>
                     
@@ -97,6 +97,7 @@
                                     <th>Titulo  <input ng-model="f.value" ng-change="filter_by()"></th>
                                     <th>Descrição</th>
                                     <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             

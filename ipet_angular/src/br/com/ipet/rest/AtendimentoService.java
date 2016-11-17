@@ -32,7 +32,7 @@ public class AtendimentoService {
 	public void inserirAtendimento(Atendimento atendimento) {
 		Connection con = DatabaseConfig.getConnection();
 
-		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
 			StringBuilder str = new StringBuilder();

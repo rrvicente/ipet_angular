@@ -31,11 +31,10 @@ public class NoticiaService {
 	public void logarUsuario(Noticia noticia) {
 		Connection con = DatabaseConfig.getConnection();
 
-		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
-			PreparedStatement stm = con
-					.prepareStatement("INSERT INTO TB_NOTICIA(TITULO, DESCRICAO, TEXTO, DATA, STATUS, ID_ANIMAL) VALUES(?, ?, ?, ?, ?, ?)");
+			PreparedStatement stm = con.prepareStatement("INSERT INTO TB_NOTICIA(TITULO, DESCRICAO, TEXTO, DATA, STATUS, ID_ANIMAL) VALUES(?, ?, ?, ?, ?, ?)");
 			stm.setString(1, noticia.getTitulo());
 			stm.setString(2, noticia.getDescricao());
 			stm.setString(3, noticia.getTexto());

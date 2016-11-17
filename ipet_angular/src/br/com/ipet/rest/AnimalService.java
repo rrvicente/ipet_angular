@@ -31,7 +31,7 @@ public class AnimalService {
 	public void inserirNovo(Animal animal) {
 		Connection con = DatabaseConfig.getConnection();
 
-		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
 			StringBuilder str = new StringBuilder();

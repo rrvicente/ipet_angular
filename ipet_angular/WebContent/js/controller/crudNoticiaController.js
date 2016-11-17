@@ -27,13 +27,13 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
     };
 	
 	$scope.cadastrarNovaNoticia = function() {
-		var string = $scope.noticia.data;
-		var month = string.substring(0,2);
-		var day = string.substring(2,4);
-		var year = string.substring(4,8);
-		var data_final = month + '/' + day + '/' + year;
+//		var string = $scope.noticia.data;
+//		var month = string.substring(0,2);
+//		var day = string.substring(2,4);
+//		var year = string.substring(4,8);
+//		var data_final = month + '/' + day + '/' + year;
 		
-		$scope.noticia.data = data_final;
+//		$scope.noticia.data = data_final;
 		
 		$http.post('/ipet_angular/rest/noticia/new', $scope.noticia)
 			.success(function(data) {

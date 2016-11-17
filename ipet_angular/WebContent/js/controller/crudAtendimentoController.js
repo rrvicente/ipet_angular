@@ -82,13 +82,13 @@ angular.module('app').controller('crudAtendimentoController',['$scope', '$http',
 					};
 					
 					$scope.cadastrarNovoAtendimento = function() {
-						var string = $scope.atendimento.data_atendimento;
-						var month = string.substring(0, 2);
-						var day = string.substring(2, 4);
-						var year = string.substring(4, 8);
-						var data_final = month + '/' + day + '/' + year;
-
-						$scope.atendimento.data_atendimento = data_final;
+//						var string = $scope.atendimento.data_atendimento;
+//						var month = string.substring(0, 2);
+//						var day = string.substring(2, 4);
+//						var year = string.substring(4, 8);
+//						var data_final = month + '/' + day + '/' + year;
+//
+//						$scope.atendimento.data_atendimento = data_final;
 						
 						$http.post('/ipet_angular/rest/atendimento/new',
 								$scope.atendimento).success(function(data) {

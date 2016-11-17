@@ -22,13 +22,13 @@ angular.module('app').controller('crudAnimalController', ['$scope', '$http', 'My
 	};
 
 	$scope.cadastrarNovoAnimal = function() {
-		var string = $scope.animal.data_nascimento_pet;
-		var month = string.substring(0, 2);
-		var day = string.substring(2, 4);
-		var year = string.substring(4, 8);
-		var data_final = month + '/' + day + '/' + year;
+//		var string = $scope.animal.data_nascimento_pet;
+//		var month = string.substring(0, 2);
+//		var day = string.substring(2, 4);
+//		var year = string.substring(4, 8);
+//		var data_final = month + '/' + day + '/' + year;
 
-		$scope.animal.data_nascimento_pet = data_final;
+//		$scope.animal.data_nascimento_pet = data_final;
 
 		$http.post('/ipet_angular/rest/animal/new', $scope.animal).success(
 				function(data) {
@@ -48,7 +48,7 @@ angular.module('app').controller('crudAnimalController', ['$scope', '$http', 'My
 	
 	$scope.cancelaCadastro = function() {
 		$scope.showCadastro = false;
-		$scope.cliente = montarObjCliente();
+//		$scope.cliente = montarObjCliente();
 		$scope.listarClientes();
 	};
 	

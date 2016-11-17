@@ -58,7 +58,7 @@
                             Telefone:
                         </div>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" ng-model="cliente.telefone" required>
+                            <input type="tel" placeholder="(99)9 9999-9999" required="required" maxlength="15" name="phone" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" class="form-control" ng-model="cliente.telefone" required>
                         </div>
                     </div>
                     
@@ -76,7 +76,7 @@
                             Email:
                         </div>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" ng-model="cliente.email" required>
+                            <input placeholder="seu_email@dominio.com" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" ng-model="cliente.email" required>
                         </div>
                     </div>
                     
