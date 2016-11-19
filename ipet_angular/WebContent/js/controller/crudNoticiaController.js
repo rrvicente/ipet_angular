@@ -16,8 +16,9 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
             .success(function(data){
                 $scope.allNoticias = data;
                 for (var i=0; i<$scope.allNoticias.length; i++) {
-                	$scope.allNoticias[i].status_desc = $scope.allNoticias[i].status == 1 ? "Bloqueada" : "Enviada";
+                	$scope.allNoticias[i].status_desc = $scope.allNoticias[i].status == 1 ? "Enviar" : "Enviada";
 					$scope.allNoticias[i].show = true;
+					$scope.allNoticias[i].showDelete = $scope.allNoticias[i].status == 1 ? true : false;
 					$("#btn-liberar").addClass("btn btn-primary");
                 }
             })
@@ -108,6 +109,7 @@ angular.module('app').controller('crudNoticiaController', ['$scope', '$http',
 			status : 1,
 			status_desc : "",
 			show : true,
+			showDelete : true,
 			animal : montarObjAnimal()
 		};
 	}

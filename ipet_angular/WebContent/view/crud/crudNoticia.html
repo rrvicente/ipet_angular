@@ -107,8 +107,8 @@
                                     <td ng-show="noticia.show">{{ noticia.data }}</td>
                                     <td ng-show="noticia.show">{{ noticia.titulo }}</td>
                                     <td ng-show="noticia.show">{{ noticia.descricao }}</td>
-                                    <td ng-show="noticia.show"><a type="button" class="btn btn-danger" ng-click="liberarNoticia(noticia)">{{ noticia.status_desc }}</a></td>
-                                    <td ng-show="noticia.show"><a type="button" class="btn btn-danger" ng-click="excluirNoticia(noticia)">Excluir</a></td>
+                                    <td ng-show="noticia.show"><a style="width: 100px;" type="button" class="btn btn-danger" ng-click="liberarNoticia(noticia)">{{ noticia.status_desc }}</a></td>
+                                    <td ng-show="noticia.show"><a style="width: 100x;" ng-show="noticia.showDelete && noticia.show" type="button" class="btn btn-danger" ng-click="excluirNoticia(noticia)">Excluir</a></td>
                                     
                                 </tr>
                                 
